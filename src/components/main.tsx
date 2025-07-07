@@ -1,7 +1,9 @@
-import { MapPin, Clock, Phone, Github } from "lucide-react";
+import { MapPin, Clock, Phone, Github, Info } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+
 import { getFarmaciaByDate } from "@/lib/generarTurnos";
+import InfoButton from "./infoButton";
 
 // Formatea la fecha actual al formato "weekday, day month year" en español
 function getCurrentDate() {
@@ -30,20 +32,13 @@ export default function FarmaciaTurno() {
         <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
           <div className="relative">
             <span
-              className="text-2xl sm:text-3xl"
+              className="text-4xl sm:text-5xl"
               role="img"
               aria-label="Hospital"
             >
               🏥
             </span>
           </div>
-          <Badge
-            variant="outline"
-            className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-300 shadow-lg text-xs sm:text-sm"
-          >
-            <Clock className="w-3 h-3 mr-1" aria-hidden="true" />
-            AHORA
-          </Badge>
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-7xl font-black bg-gradient-to-r from-green-600 via-emerald-500 to-green-700 bg-clip-text text-transparent tracking-tight leading-tight animate-gradient">
           ¡Farmacia de Turno Hoy!
@@ -82,37 +77,44 @@ export default function FarmaciaTurno() {
                 <div className="absolute inset-0 rounded-full blur-xl"></div>
               </div>
 
-              <div className="space-y-2 sm:space-y-3">
+              <div className="space-y-3 sm:space-y-4">
                 <h2
                   id="farmacia-title"
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-green-700 mb-3 sm:mb-4"
                 >
                   {farmacia.nombre}
                 </h2>
-                <div className="relative">
-                  <Badge className="bg-green-600 text-white px-4 sm:px-6 py-1.5 sm:py-2 text-sm sm:text-lg font-semibold rounded-full">
-                    FARMACIA DE TURNO
+
+                {/* Estado del turno */}
+                <div className="flex flex-col items-center gap-2">
+                  <Badge
+                    variant="outline"
+                    className={`${
+                      farmacia.trabajando
+                        ? "bg-emerald-500 text-white"
+                        : "bg-sky-500 text-white"
+                    } px-3 py-1.5 text-sm font-medium rounded-lg`}
+                  >
+                    <Clock className="w-4 h-4 mr-1" aria-hidden="true" />
+                    {farmacia.trabajando ? "TRABAJANDO" : "DE TURNO"}
                   </Badge>
+
+                  <p className="text-xs sm:text-sm text-gray-600 font-medium">
+                    Horario: 8:00 PM - 8:00 AM
+                  </p>
                 </div>
               </div>
 
-              <address className="space-y-3 sm:space-y-4 mt-4 sm:mt-6 not-italic">
-                <div className="flex items-center justify-center gap-2 sm:gap-3 text-gray-700 pt-2 sm:pt-4 rounded-2xl">
-                  <MapPin
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 flex-shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span className="text-sm sm:text-base lg:text-lg font-medium">
+              <address className="space-y-4 mt-10 not-italic border-t border-gray-200 pt-8">
+                <div className="flex items-center justify-center gap-4 text-gray-700">
+                  <MapPin className="w-6 h-6 text-green-600" />
+                  <span className="text-lg sm:text-xl font-medium">
                     {farmacia.direccion || "Monte Caseros, Corrientes"}
                   </span>
                 </div>
-
-                <div className="flex items-center justify-center gap-2 sm:gap-3 text-gray-700 pb-2 sm:pb-4 rounded-2xl">
-                  <Phone
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 flex-shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span className="text-sm sm:text-base lg:text-lg font-medium">
+                <div className="flex items-center justify-center gap-4 text-gray-700">
+                  <Phone className="w-6 h-6 text-blue-600" />
+                  <span className="text-lg sm:text-xl font-medium">
                     {farmacia.telefono || "Sin datos de contacto"}
                   </span>
                 </div>
@@ -206,6 +208,9 @@ export default function FarmaciaTurno() {
           />
         </a>
       </footer>
+
+      {/* Botón de información */}
+      <InfoButton />
     </div>
   );
 }

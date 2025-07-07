@@ -13,16 +13,16 @@ const currentDate = new Date().toLocaleDateString("es-AR", {
 });
 
 // Metadatos SEO optimizados
-const title = `Farmacia de Turno Hoy en Monte Caseros - ${farmacia.nombre} | ${currentDate}`;
-const description = `Consulta qué farmacia está de turno hoy en Monte Caseros, Corrientes. ${farmacia.nombre} - Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${farmacia.telefono || "Disponible"}. Información actualizada diariamente.`;
+const title = `${farmacia.trabajando ? "Farmacia Trabajando" : "Farmacia de Turno"} Hoy en Monte Caseros - ${farmacia.nombre} | ${currentDate}`;
+const description = `Consulta qué farmacia está ${farmacia.trabajando ? "trabajando" : "de turno"} hoy en Monte Caseros, Corrientes. ${farmacia.nombre} - ${farmacia.estadoMensaje}. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${farmacia.telefono || "Disponible"}. Información actualizada diariamente.`;
 const url = "https://farmaciasdeturnomc.vercel.app";
 
 // Estructura de datos JSON-LD para Google
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: `${farmacia.nombre} - Farmacia de Turno`,
-  description: `Farmacia de turno en Monte Caseros, Corrientes. ${description}`,
+  name: `${farmacia.nombre} - ${farmacia.trabajando ? "Farmacia Trabajando" : "Farmacia de Turno"}`,
+  description: `${farmacia.trabajando ? "Farmacia trabajando" : "Farmacia de turno"} en Monte Caseros, Corrientes. ${description}`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Monte Caseros",
@@ -32,7 +32,7 @@ const jsonLd = {
   },
   telephone: farmacia.telefono || "",
   url: url,
-  openingHours: "Mo-Su 00:00-23:59",
+  openingHours: farmacia.trabajando ? "Mo-Su 20:00-08:00" : "Mo-Su 20:00-08:00",
   priceRange: "$$",
   category: "Farmacia",
   areaServed: {
@@ -62,7 +62,7 @@ const jsonLd = {
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="farmacia de turno, monte caseros, corrientes, farmacia, turno, medicamentos, farmacia hoy, farmacia abierta, monte caseros farmacia"
+      content="farmacia de turno, monte caseros, corrientes, farmacia, turno, medicamentos, farmacia hoy, farmacia abierta, monte caseros farmacia, farmacia trabajando, turno nocturno"
     />
     <meta name="author" content="Gonzalo Ramirez" />
     <meta name="robots" content="index, follow" />
