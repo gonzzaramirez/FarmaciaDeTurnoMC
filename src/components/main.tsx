@@ -1,6 +1,7 @@
 import { MapPin, Clock, Phone, Github, Info } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
 
 import { getFarmaciaByDate } from "@/lib/generarTurnos";
 import InfoButton from "./infoButton";
@@ -21,6 +22,39 @@ export default function FarmaciaTurno() {
   const currentDate = getCurrentDate();
   // Obtener farmacia de turno usando la función
   const farmacia = getFarmaciaByDate(new Date());
+
+  // useEffect para actualizar dinámicamente el título del documento
+  useEffect(() => {
+    const farmacia = getFarmaciaByDate(new Date());
+    const fechaActualFormateada = getCurrentDate();
+
+    const nuevoTitulo = `${
+      farmacia.trabajando ? "Farmacia Trabajando" : "Farmacia de Turno"
+    } Hoy en Monte Caseros - ${farmacia.nombre} | ${fechaActualFormateada}`;
+
+    document.title = nuevoTitulo;
+
+    // Actualizar también la meta description
+    const nuevaDescripcion = `Consulta qué farmacia está ${
+      farmacia.trabajando ? "trabajando" : "de turno"
+    } hoy en Monte Caseros, Corrientes. ${farmacia.nombre} - ${
+      farmacia.estadoMensaje
+    }. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${
+      farmacia.telefono || "Disponible"
+    }. Información actualizada diariamente.`;
+
+    // Buscar y actualizar la meta description existente
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", nuevaDescripcion);
+    } else {
+      // Si no existe, crear una nueva meta description
+      metaDescription = document.createElement("meta");
+      metaDescription.setAttribute("name", "description");
+      metaDescription.setAttribute("content", nuevaDescripcion);
+      document.head.appendChild(metaDescription);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
