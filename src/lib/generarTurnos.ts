@@ -132,9 +132,9 @@ export const getFarmaciaByDate = (fecha: Date): any => {
     // Entre 8am y 8pm, mostrar la farmacia de turno de hoy (que inicia a las 8pm)
     fechaParaBuscar = new Date(fecha);
   } else {
-    // Entre 8pm y 8am, mostrar la farmacia de turno de ayer (que está trabajando)
+    // Entre 8pm y 8am, mostrar la farmacia de turno de hoy (que está trabajando)
+    // El turno es desde las 8pm de hoy hasta las 8am de mañana
     fechaParaBuscar = new Date(fecha);
-    fechaParaBuscar.setDate(fechaParaBuscar.getDate() - 1);
   }
 
   // Formatear la fecha como YYYY-MM-DD
