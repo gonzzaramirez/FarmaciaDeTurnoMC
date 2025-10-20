@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import FarmaciaTurno from "../components/main";
 import { getFarmaciaByDate } from "../lib/generarTurnos";
+import Analytics from "@vercel/analytics/astro";
 
 // Obtener datos de la farmacia de turno para SEO
 const farmacia = getFarmaciaByDate(new Date());
@@ -108,6 +109,8 @@ const jsonLd = {
       title="Sitemap"
       href="/sitemap.xml"
     />
+
+    <Analytics />
   </head>
   <body class="relative bg-white min-h-screen w-full">
     <!-- Fondo de cuadrícula -->
