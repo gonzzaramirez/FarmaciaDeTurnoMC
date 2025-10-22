@@ -1,6 +1,6 @@
 # 🏥 Farmacias de Turno Monte Caseros
 
-Aplicación web para consultar qué farmacia está de turno en Monte Caseros, Corrientes. Desarrollada con **Astro** y **React**.
+Aplicación web para consultar qué farmacia está de turno en Monte Caseros, Corrientes. Desarrollada con **Astro** y **React**
 
 ## ✨ Características
 
@@ -58,4 +58,3 @@ La aplicación está optimizada para aparecer en búsquedas como:
 - "farmacia abierta monte caseros"
 - "farmacias de turno corrientes"
 - "farmacia monte caseros"
-
