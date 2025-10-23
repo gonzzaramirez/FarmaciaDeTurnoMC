@@ -74,6 +74,42 @@ const farmaciasInfo = {
   },
 };
 
+// 📍 Zona horaria objetivo para todos los cálculos
+const AR_TIME_ZONE = "America/Argentina/Buenos_Aires";
+
+// ⏱️ Obtiene la hora (0-23) en la zona horaria definida
+const getHourInTimeZone = (fecha: Date, timeZone: string): number => {
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone,
+    hour: "2-digit",
+    hour12: false,
+  });
+  return parseInt(formatter.format(fecha), 10);
+};
+
+// 📆 Formatea YYYY-MM-DD en la zona horaria definida
+const formatDateYMDInTimeZone = (fecha: Date, timeZone: string): string => {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(fecha);
+};
+
+// 🔁 Devuelve YYYY-MM-DD de N días antes respecto a un YYYY-MM-DD en la zona dada
+const subtractDaysFromYMDInTimeZone = (
+  ymd: string,
+  timeZone: string,
+  days: number
+): string => {
+  const [y, m, d] = ymd.split("-").map(Number);
+  // Usar 12:00 UTC para evitar bordes de horario de verano
+  const utcDate = new Date(Date.UTC(y, m - 1, d, 12));
+  utcDate.setUTCDate(utcDate.getUTCDate() - days);
+  return formatDateYMDInTimeZone(utcDate, timeZone);
+};
+
 // 🔢 Ordenar turnos por fecha
 export const getTurnosOrdenados = () => {
   return [...turnosFarmacias].sort(
@@ -83,7 +119,7 @@ export const getTurnosOrdenados = () => {
 
 // 🕓 Determinar si una farmacia está trabajando (20:00 a 20:00)
 export const isFarmaciaTrabajando = (fecha: Date): boolean => {
-  const hora = fecha.getHours();
+  const hora = getHourInTimeZone(fecha, AR_TIME_ZONE);
   return hora >= 20 || hora < 8;
 };
 
@@ -92,7 +128,7 @@ export const getEstadoTurno = (
   fecha: Date
 ): { trabajando: boolean; mensaje: string } => {
   const trabajando = isFarmaciaTrabajando(fecha);
-  const hora = fecha.getHours();
+  const hora = getHourInTimeZone(fecha, AR_TIME_ZONE);
 
   if (trabajando) {
     return {
@@ -112,16 +148,14 @@ export const getEstadoTurno = (
 
 // 🧭 Obtener la farmacia de turno según la fecha actual
 export const getFarmaciaByDate = (fecha: Date): any => {
-  const hora = fecha.getHours();
-  const fechaParaBuscar = new Date(fecha);
+  const horaAR = getHourInTimeZone(fecha, AR_TIME_ZONE);
+  const hoyYMD_AR = formatDateYMDInTimeZone(fecha, AR_TIME_ZONE);
+  const fechaObjetivoYMD =
+    horaAR < 20
+      ? subtractDaysFromYMDInTimeZone(hoyYMD_AR, AR_TIME_ZONE, 1)
+      : hoyYMD_AR;
 
-  // 🔧 Ajuste clave: si es antes de las 20:00, todavía sigue el turno anterior
-  if (hora < 20) {
-    fechaParaBuscar.setDate(fechaParaBuscar.getDate() - 1);
-  }
-
-  const fechaFormateada = fechaParaBuscar.toISOString().split("T")[0];
-  const turno = turnosFarmacias.find((t) => t.fecha === fechaFormateada);
+  const turno = turnosFarmacias.find((t) => t.fecha === fechaObjetivoYMD);
 
   if (turno) {
     const infoFarmacia =
@@ -143,7 +177,7 @@ export const getFarmaciaByDate = (fecha: Date): any => {
     direccion: "Monte Caseros, Corrientes",
     telefono: "Sin datos de contacto",
     mapsUrl: null,
-    fecha: fechaFormateada,
+    fecha: fechaObjetivoYMD,
     trabajando: estado.trabajando,
     estadoMensaje: estado.mensaje,
   };
