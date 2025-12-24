@@ -134,7 +134,7 @@ export default function FarmaciaTurno() {
                   </Badge>
 
                   <p className="text-xs sm:text-sm text-gray-600 font-medium">
-                    Horario: 8:00 PM - 8:00 AM
+                    Turno de 24hs: 8:00 AM - 8:00 AM (día siguiente)
                   </p>
                 </div>
               </div>

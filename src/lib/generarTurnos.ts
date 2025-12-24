@@ -117,41 +117,38 @@ export const getTurnosOrdenados = () => {
   );
 };
 
-// 🕓 Determinar si una farmacia está trabajando (20:00 a 20:00)
-export const isFarmaciaTrabajando = (fecha: Date): boolean => {
-  const hora = getHourInTimeZone(fecha, AR_TIME_ZONE);
-  return hora >= 20 || hora < 8;
+// 🕓 El turno de farmacia es de 24 horas: 8:00 AM hasta 8:00 AM del día siguiente
+// Por lo tanto, siempre está "trabajando" durante su turno
+export const isFarmaciaTrabajando = (): boolean => {
+  // La farmacia de turno siempre está trabajando durante las 24 horas de su turno
+  return true;
 };
 
 // 📅 Obtener estado del turno
 export const getEstadoTurno = (
   fecha: Date
 ): { trabajando: boolean; mensaje: string } => {
-  const trabajando = isFarmaciaTrabajando(fecha);
   const hora = getHourInTimeZone(fecha, AR_TIME_ZONE);
-
-  if (trabajando) {
-    return {
-      trabajando: true,
-      mensaje:
-        hora >= 20
-          ? "TRABAJANDO - Turno 20:00 a 08:00"
-          : "TRABAJANDO - Turno nocturno",
-    };
-  } else {
-    return {
-      trabajando: false,
-      mensaje: "DE TURNO - Inicia a las 20:00",
-    };
-  }
+  
+  // El turno es de 8 AM a 8 AM del día siguiente (24 horas completas)
+  return {
+    trabajando: true,
+    mensaje: hora < 8 
+      ? "TRABAJANDO - Turno finaliza a las 08:00"
+      : "TRABAJANDO - Turno hasta las 08:00 del día siguiente",
+  };
 };
 
 // 🧭 Obtener la farmacia de turno según la fecha actual
+// El turno comienza a las 8:00 AM del día asignado y termina a las 8:00 AM del día siguiente
 export const getFarmaciaByDate = (fecha: Date): any => {
   const horaAR = getHourInTimeZone(fecha, AR_TIME_ZONE);
   const hoyYMD_AR = formatDateYMDInTimeZone(fecha, AR_TIME_ZONE);
+  
+  // Si la hora es < 8 AM, aún estamos en el turno del día anterior
+  // Si la hora es >= 8 AM, estamos en el turno de hoy
   const fechaObjetivoYMD =
-    horaAR < 20
+    horaAR < 8
       ? subtractDaysFromYMDInTimeZone(hoyYMD_AR, AR_TIME_ZONE, 1)
       : hoyYMD_AR;
 
