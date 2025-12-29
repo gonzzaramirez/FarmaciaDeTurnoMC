@@ -12,7 +12,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   output: 'server',
   integrations: [react(), sitemap()],
-  site: 'https://farmaciasdeturnomc.vercel.app',
+  site: 'https://farmaciadeturnomc.vercel.app',
   trailingSlash: 'never',
 
   build: {
