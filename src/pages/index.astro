@@ -8,7 +8,7 @@ import Analytics from "@vercel/analytics/astro";
 const farmacia = getFarmaciaByDate(new Date());
 
 // Metadatos SEO optimizados
-const title = "Farmacia trabajando hoy en Monte Caseros";
+const title = `Farmacia de Turno Hoy en Monte Caseros | ${farmacia.nombre}`;
 const description = `Consulta qué farmacia está ${farmacia.trabajando ? "trabajando" : "de turno"} hoy en Monte Caseros, Corrientes. ${farmacia.nombre} - ${farmacia.estadoMensaje}. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${farmacia.telefono || "Disponible"}. Información actualizada diariamente.`;
 const url = "https://farmaciasdeturnomc.vercel.app";
 
@@ -112,7 +112,7 @@ const jsonLd = {
 
     <Analytics />
   </head>
-  <body class="relative bg-white min-h-screen w-full">
+  <div class="relative bg-white min-h-screen w-full">
     <!-- Fondo de cuadrícula -->
     <div
       class="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"
@@ -120,8 +120,10 @@ const jsonLd = {
     </div>
 
     <!-- Contenido principal -->
-    <div class="relative z-10">
-      <FarmaciaTurno client:load />
-    </div>
-  </body>
+    <body class="relative bg-white min-h-screen w-full">
+      <main class="relative z-10">
+        <FarmaciaTurno client:load />
+      </main>
+    </body>
+  </div>
 </html>
