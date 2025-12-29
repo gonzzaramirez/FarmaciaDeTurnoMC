@@ -4,8 +4,23 @@ import FarmaciaTurno from "../components/main";
 import { getFarmaciaByDate } from "../lib/generarTurnos";
 import Analytics from "@vercel/analytics/astro";
 
-// Obtener datos de la farmacia de turno para SEO
-const farmacia = getFarmaciaByDate(new Date());
+// Zona horaria de Argentina para todos los cálculos
+const AR_TIME_ZONE = "America/Argentina/Buenos_Aires";
+
+// Obtener la fecha actual en hora Argentina
+const now = new Date();
+
+// Formatear la fecha en español argentino con zona horaria correcta
+const fechaFormateada = new Intl.DateTimeFormat("es-AR", {
+  timeZone: AR_TIME_ZONE,
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(now);
+
+// Obtener datos de la farmacia de turno para SEO (ya usa zona horaria AR internamente)
+const farmacia = getFarmaciaByDate(now);
 
 // Metadatos SEO optimizados
 const title = `Farmacia de Turno Hoy en Monte Caseros | ${farmacia.nombre}`;
@@ -126,7 +141,11 @@ const jsonLd = {
     <!-- Contenido principal -->
     <body class="relative bg-white min-h-screen w-full">
       <main class="relative z-10">
-        <FarmaciaTurno client:load />
+        <FarmaciaTurno
+          client:load
+          farmacia={farmacia}
+          fechaFormateada={fechaFormateada}
+        />
       </main>
     </body>
   </div>

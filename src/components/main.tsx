@@ -1,63 +1,34 @@
-import { MapPin, Clock, Phone, Github, Info } from "lucide-react";
+import { MapPin, Clock, Phone, Github } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useEffect } from "react";
-
-import { getFarmaciaByDate } from "@/lib/generarTurnos";
 import InfoButton from "./infoButton";
 
-// Formatea la fecha actual al formato "weekday, day month year" en español
-function getCurrentDate() {
-  const today = new Date();
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return today.toLocaleDateString("es-AR", options);
+// Tipado para los datos de la farmacia
+interface FarmaciaData {
+  nombre: string;
+  direccion?: string;
+  telefono?: string;
+  mapsUrl?: string | null;
+  fecha: string;
+  trabajando: boolean;
+  estadoMensaje: string;
 }
 
-export default function FarmaciaTurno() {
-  const currentDate = getCurrentDate();
-  // Obtener farmacia de turno usando la función
-  const farmacia = getFarmaciaByDate(new Date());
+interface FarmaciaTurnoProps {
+  farmacia: FarmaciaData;
+  fechaFormateada: string;
+}
 
-  // useEffect para actualizar dinámicamente el título del documento
-  useEffect(() => {
-    const farmacia = getFarmaciaByDate(new Date());
-    const fechaActualFormateada = getCurrentDate();
-
-    const nuevoTitulo = `${
-      farmacia.trabajando ? "Farmacia Trabajando" : "Farmacia de Turno"
-    } Hoy en Monte Caseros - ${farmacia.nombre} | ${fechaActualFormateada}`;
-
-    document.title = nuevoTitulo;
-
-    // Actualizar también la meta description
-    const nuevaDescripcion = `Consulta qué farmacia está ${
-      farmacia.trabajando ? "trabajando" : "de turno"
-    } hoy en Monte Caseros, Corrientes. ${farmacia.nombre} - ${
-      farmacia.estadoMensaje
-    }. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${
-      farmacia.telefono || "Disponible"
-    }. Información actualizada diariamente.`;
-
-    // Buscar y actualizar la meta description existente
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", nuevaDescripcion);
-    } else {
-      // Si no existe, crear una nueva meta description
-      metaDescription = document.createElement("meta");
-      metaDescription.setAttribute("name", "description");
-      metaDescription.setAttribute("content", nuevaDescripcion);
-      document.head.appendChild(metaDescription);
-    }
-  }, []);
-
+// Componente optimizado para SSR - recibe datos precalculados del servidor
+export default function FarmaciaTurno({
+  farmacia,
+  fechaFormateada,
+}: FarmaciaTurnoProps) {
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {/* Fondo de cuadrícula */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
       {/* Header */}
       <header
         className="text-center pt-4 sm:pt-6 pb-3 sm:pb-4 px-3 sm:px-4 relative z-10"
@@ -84,7 +55,7 @@ export default function FarmaciaTurno() {
           className="text-green-700 font-medium capitalize text-sm sm:text-lg mt-2 sm:mt-4"
           role="contentinfo"
         >
-          {currentDate}
+          {fechaFormateada}
         </p>
       </header>
 
