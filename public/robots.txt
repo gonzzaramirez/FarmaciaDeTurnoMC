@@ -1,8 +1,7 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://farmaciasdeturnomc.vercel.app/sitemap.xml
+# Sitemap correcto (SINGULAR y INDEX)
+Sitemap: https://farmaciadeturnomc.vercel.app/sitemap-index.xml
 
-# Crawl-delay para ser respetuoso con el servidor
-Crawl-delay: 1 
+Crawl-delay: 1
