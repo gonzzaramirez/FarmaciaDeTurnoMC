@@ -741,126 +741,19 @@ export const turnosFarmacias = [
   // ENERO 2026
   {
     fecha: "2026-01-01",
-    farmacia: "SOLIDARIA",
+    farmacia: "ITATI",
   },
   {
     fecha: "2026-01-02",
-    farmacia: "CENTRO",
+    farmacia: "FAR MAR",
   },
   {
     fecha: "2026-01-03",
-    farmacia: "CORRIENTES",
+    farmacia: "FARMA CAS",
   },
   {
     fecha: "2026-01-04",
-    farmacia: "4 SOLES",
-  },
-  {
-    fecha: "2026-01-05",
-    farmacia: "DEL ESTE II",
-  },
-  {
-    fecha: "2026-01-06",
-    farmacia: "ITATI",
-  },
-  {
-    fecha: "2026-01-07",
-    farmacia: "FAR MAR",
-  },
-  {
-    fecha: "2026-01-08",
-    farmacia: "FARMA CAS",
-  },
-  {
-    fecha: "2026-01-09",
     farmacia: "DEL ESTE",
   },
-  {
-    fecha: "2026-01-10",
-    farmacia: "4 SOLES II",
-  },
-  {
-    fecha: "2026-01-11",
-    farmacia: "LOS AMIGOS",
-  },
-  {
-    fecha: "2026-01-12",
-    farmacia: "SOLIDARIA",
-  },
-  {
-    fecha: "2026-01-13",
-    farmacia: "CENTRO",
-  },
-  {
-    fecha: "2026-01-14",
-    farmacia: "CORRIENTES",
-  },
-  {
-    fecha: "2026-01-15",
-    farmacia: "4 SOLES",
-  },
-  {
-    fecha: "2026-01-16",
-    farmacia: "DEL ESTE II",
-  },
-  {
-    fecha: "2026-01-17",
-    farmacia: "ITATI",
-  },
-  {
-    fecha: "2026-01-18",
-    farmacia: "FAR MAR",
-  },
-  {
-    fecha: "2026-01-19",
-    farmacia: "FARMA CAS",
-  },
-  {
-    fecha: "2026-01-20",
-    farmacia: "DEL ESTE",
-  },
-  {
-    fecha: "2026-01-21",
-    farmacia: "4 SOLES II",
-  },
-  {
-    fecha: "2026-01-22",
-    farmacia: "LOS AMIGOS",
-  },
-  {
-    fecha: "2026-01-23",
-    farmacia: "SOLIDARIA",
-  },
-  {
-    fecha: "2026-01-24",
-    farmacia: "CENTRO",
-  },
-  {
-    fecha: "2026-01-25",
-    farmacia: "CORRIENTES",
-  },
-  {
-    fecha: "2026-01-26",
-    farmacia: "4 SOLES",
-  },
-  {
-    fecha: "2026-01-27",
-    farmacia: "DEL ESTE II",
-  },
-  {
-    fecha: "2026-01-28",
-    farmacia: "ITATI",
-  },
-  {
-    fecha: "2026-01-29",
-    farmacia: "FAR MAR",
-  },
-  {
-    fecha: "2026-01-30",
-    farmacia: "FARMA CAS",
-  },
-  {
-    fecha: "2026-01-31",
-    farmacia: "DEL ESTE",
-  },
+  
 ];
