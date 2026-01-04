@@ -755,5 +755,113 @@ export const turnosFarmacias = [
     fecha: "2026-01-04",
     farmacia: "DEL ESTE",
   },
+  {
+    fecha: "2026-01-05",
+    farmacia: "LOS AMIGOS",
+  },
+  {
+    fecha: "2026-01-06",
+    farmacia: "SOLIDARIA",
+  },
+  {
+    fecha: "2026-01-07",
+    farmacia: "CENTRO",
+  },
+  {
+    fecha: "2026-01-08",
+    farmacia: "CORRIENTES",
+  },
+  {
+    fecha: "2026-01-09",
+    farmacia: "4 SOLES",
+  },
+  {
+    fecha: "2026-01-10",
+    farmacia: "DEL ESTE II",
+  },
+  {
+    fecha: "2026-01-11",
+    farmacia: "ITATI",
+  },
+  {
+    fecha: "2026-01-12",
+    farmacia: "FAR MAR",
+  },
+  {
+    fecha: "2026-01-13",
+    farmacia: "FARMA CAS",
+  },
+  {
+    fecha: "2026-01-14",
+    farmacia: "DEL ESTE",
+  },
+  {
+    fecha: "2026-01-15",
+    farmacia: "LOS AMIGOS",
+  },
+  {
+    fecha: "2026-01-16",
+    farmacia: "DEL ESTE",
+  },
+  {
+    fecha: "2026-01-17",
+    farmacia: "CENTRO",
+  },
+  {
+    fecha: "2026-01-18",
+    farmacia: "CORRIENTES",
+  },
+  {
+    fecha: "2026-01-19",
+    farmacia: "4 SOLES",
+  },
+  {
+    fecha: "2026-01-20",
+    farmacia: "DEL ESTE II",
+  },
+  {
+    fecha: "2026-01-21",
+    farmacia: "ITATI",
+  },
+  {
+    fecha: "2026-01-22",
+    farmacia: "FAR MAR",
+  },
+  {
+    fecha: "2026-01-23",
+    farmacia: "FARMA CAS",
+  },
+  {
+    fecha: "2026-01-24",
+    farmacia: "DEL ESTE",
+  },
+  {
+    fecha: "2026-01-25",
+    farmacia: "LOS AMIGOS",
+  },
+  {
+    fecha: "2026-01-26",
+    farmacia: "SOLIDARIA",
+  },
+  {
+    fecha: "2026-01-27",
+    farmacia: "CENTRO",
+  },
+  {
+    fecha: "2026-01-28",
+    farmacia: "CORRIENTES",
+  },
+  {
+    fecha: "2026-01-29",
+    farmacia: "4 SOLES",
+  },
+  {
+    fecha: "2026-01-30",
+    farmacia: "DEL ESTE II",
+  },
+  {
+    fecha: "2026-01-31",
+    farmacia: "ITATI",
+  },
   
 ];
