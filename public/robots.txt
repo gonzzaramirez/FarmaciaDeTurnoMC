@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 # Sitemap con dominio principal
 Sitemap: https://farmaciadeturnomc.site/sitemap-index.xml
 
