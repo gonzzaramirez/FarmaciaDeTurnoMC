@@ -10,11 +10,11 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // AGREGA ESTO: Forzar la inclusión de tu home
-      customPages: ['https://farmaciadeturnomc.vercel.app/'],
+      // Forzar la inclusión de tu home con el dominio principal
+      customPages: ['https://farmaciadeturnomc.site/'],
     }),
   ],
-  site: 'https://farmaciadeturnomc.vercel.app',
+  site: 'https://farmaciadeturnomc.site',
   trailingSlash: 'never',
   build: {
     inlineStylesheets: 'auto',

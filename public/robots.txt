@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Sitemap correcto (SINGULAR y INDEX)
-Sitemap: https://farmaciadeturnomc.vercel.app/sitemap-index.xml
+# Sitemap con dominio principal
+Sitemap: https://farmaciadeturnomc.site/sitemap-index.xml
 
 Crawl-delay: 1

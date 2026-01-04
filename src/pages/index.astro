@@ -24,8 +24,9 @@ const farmacia = getFarmaciaByDate(now);
 
 // Metadatos SEO optimizados
 const title = `Farmacia de Turno Hoy en Monte Caseros | ${farmacia.nombre}`;
-const description = `Consulta qué farmacia está ${farmacia.trabajando ? "trabajando" : "de turno"} hoy en Monte Caseros, Corrientes. ${farmacia.nombre} - ${farmacia.estadoMensaje}. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${farmacia.telefono || "Disponible"}. Información actualizada diariamente.`;
-const url = "https://farmaciadeturnomc.vercel.app";
+// Meta descripción optimizada (<160 caracteres para SEO)
+const description = `${farmacia.nombre} - Farmacia ${farmacia.trabajando ? "trabajando" : "de turno"} hoy en Monte Caseros, Corrientes. Información actualizada.`;
+const url = "https://farmaciadeturnomc.site";
 
 // Estructura de datos JSON-LD para Google
 const jsonLd = {
