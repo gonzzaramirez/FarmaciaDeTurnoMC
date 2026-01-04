@@ -27,6 +27,7 @@ const title = `Farmacia de Turno Hoy en Monte Caseros | ${farmacia.nombre}`;
 // Meta descripción optimizada (<160 caracteres para SEO)
 const description = `${farmacia.nombre} - Farmacia ${farmacia.trabajando ? "trabajando" : "de turno"} hoy en Monte Caseros, Corrientes. Información actualizada.`;
 const url = "https://farmaciadeturnomc.site";
+const imageUrl = `${url}/og-image.png`;
 
 // Estructura de datos JSON-LD para Google y Asistentes de IA
 const jsonLdLocalBusiness = {
@@ -171,9 +172,9 @@ const jsonLdFAQ = {
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <!-- <meta property="og:image" content={imageUrl} /> -->
-    <!-- <meta property="og:image:width" content="1200" /> -->
-    <!-- <meta property="og:image:height" content="630" /> -->
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_AR" />
     <meta property="og:site_name" content="Farmacias de Turno Monte Caseros" />
 
@@ -182,7 +183,7 @@ const jsonLdFAQ = {
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <!-- <meta property="twitter:image" content={imageUrl} /> -->
+    <meta property="twitter:image" content={imageUrl} />
 
     <!-- Additional SEO -->
     <meta name="theme-color" content="#16a34a" />
