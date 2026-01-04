@@ -28,8 +28,8 @@ const title = `Farmacia de Turno Hoy en Monte Caseros | ${farmacia.nombre}`;
 const description = `${farmacia.nombre} - Farmacia ${farmacia.trabajando ? "trabajando" : "de turno"} hoy en Monte Caseros, Corrientes. Información actualizada.`;
 const url = "https://farmaciadeturnomc.site";
 
-// Estructura de datos JSON-LD para Google
-const jsonLd = {
+// Estructura de datos JSON-LD para Google y Asistentes de IA
+const jsonLdLocalBusiness = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: `${farmacia.nombre} - ${farmacia.trabajando ? "Farmacia Trabajando" : "Farmacia de Turno"}`,
@@ -55,6 +55,76 @@ const jsonLd = {
     latitude: -30.2539,
     longitude: -57.6363,
   },
+};
+
+// Schema WebSite para mejor indexación
+const jsonLdWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Farmacias de Turno Monte Caseros",
+  url: url,
+  description: "Consulta qué farmacia está de turno hoy en Monte Caseros, Corrientes. Información actualizada diariamente con direcciones y teléfonos.",
+  inLanguage: "es-AR",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: url
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
+// Schema Organization
+const jsonLdOrganization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Farmacias de Turno Monte Caseros",
+  url: url,
+  logo: `${url}/favicon.ico`,
+  description: "Servicio de información de farmacias de turno en Monte Caseros, Corrientes",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Monte Caseros",
+    addressRegion: "Corrientes",
+    addressCountry: "AR"
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Monte Caseros"
+  }
+};
+
+// Schema FAQPage - muy importante para asistentes de IA
+const jsonLdFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Qué farmacia está de turno hoy en Monte Caseros?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Hoy ${fechaFormateada} la farmacia de turno en Monte Caseros, Corrientes es ${farmacia.nombre}. ${farmacia.estadoMensaje}. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${farmacia.telefono || "Disponible"}.`
+      }
+    },
+    {
+      "@type": "Question",
+      name: "¿Cómo saber qué farmacia está de turno en Monte Caseros?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Puedes consultar qué farmacia está de turno en Monte Caseros visitando ${url}. La información se actualiza diariamente y muestra la farmacia de turno actual con su dirección y número de teléfono.`
+      }
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué farmacia trabaja hoy en Monte Caseros, Corrientes?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `La farmacia que trabaja hoy en Monte Caseros es ${farmacia.nombre}. ${farmacia.trabajando ? "Está trabajando" : "Está de turno"} con turno hasta ${farmacia.estadoMensaje}. Dirección: ${farmacia.direccion || "Monte Caseros"}. Teléfono: ${farmacia.telefono || "Disponible"}.`
+      }
+    }
+  ]
 };
 ---
 
@@ -86,6 +156,12 @@ const jsonLd = {
     <meta name="geo.placename" content="Monte Caseros" />
     <meta name="geo.position" content="-30.2539;-57.6363" />
     <meta name="ICBM" content="-30.2539, -57.6363" />
+    
+    <!-- Meta tags adicionales para asistentes de IA -->
+    <meta name="topic" content="Farmacias de Turno, Monte Caseros, Corrientes" />
+    <meta name="subject" content="Información de farmacias de turno en Monte Caseros" />
+    <meta name="classification" content="Servicio de información de salud" />
+    <meta name="coverage" content="Monte Caseros, Corrientes, Argentina" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={url} />
@@ -119,8 +195,11 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- JSON-LD Structured Data para SEO y Asistentes de IA -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdWebSite)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdLocalBusiness)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdFAQ)} />
 
     <!-- Sitemap hint -->
     <link
@@ -132,7 +211,7 @@ const jsonLd = {
 
     <Analytics />
   </head>
-  <div class="relative bg-white min-h-screen w-full">
+  <body class="relative bg-white min-h-screen w-full">
     <!-- Fondo de cuadrícula -->
     <div
       class="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"
@@ -140,14 +219,32 @@ const jsonLd = {
     </div>
 
     <!-- Contenido principal -->
-    <body class="relative bg-white min-h-screen w-full">
-      <main class="relative z-10">
+    <main class="relative z-10">
+        <!-- H1 explícito para SEO - visible en el HTML inicial -->
+        <header class="text-center pt-4 sm:pt-6 pb-3 sm:pb-4 px-3 sm:px-4 relative z-10" role="banner">
+          <div class="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+            <div class="relative">
+              <span class="text-4xl sm:text-5xl" role="img" aria-label="Hospital">
+                🏥
+              </span>
+            </div>
+          </div>
+          <h1 class="text-2xl sm:text-3xl md:text-7xl font-black bg-gradient-to-r from-green-600 via-emerald-500 to-green-700 bg-clip-text text-transparent tracking-tight leading-tight">
+            ¡Farmacia de Turno Hoy!
+            <span class="block text-lg sm:text-2xl md:text-5xl mt-1 sm:mt-2">
+              Monte Caseros
+            </span>
+          </h1>
+          <p class="text-green-700 font-medium capitalize text-sm sm:text-lg mt-2 sm:mt-4" role="contentinfo">
+            {fechaFormateada}
+          </p>
+        </header>
+        
         <FarmaciaTurno
           client:load
           farmacia={farmacia}
           fechaFormateada={fechaFormateada}
         />
-      </main>
-    </body>
-  </div>
+    </main>
+  </body>
 </html>

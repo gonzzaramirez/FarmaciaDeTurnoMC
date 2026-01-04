@@ -29,36 +29,6 @@ export default function FarmaciaTurno({
       {/* Fondo de cuadrícula */}
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
-      {/* Header */}
-      <header
-        className="text-center pt-4 sm:pt-6 pb-3 sm:pb-4 px-3 sm:px-4 relative z-10"
-        role="banner"
-      >
-        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-          <div className="relative">
-            <span
-              className="text-4xl sm:text-5xl"
-              role="img"
-              aria-label="Hospital"
-            >
-              🏥
-            </span>
-          </div>
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-7xl font-black bg-gradient-to-r from-green-600 via-emerald-500 to-green-700 bg-clip-text text-transparent tracking-tight leading-tight animate-gradient">
-          ¡Farmacia de Turno Hoy!
-          <span className="block text-lg sm:text-2xl md:text-5xl mt-1 sm:mt-2">
-            Monte Caseros
-          </span>
-        </h1>
-        <p
-          className="text-green-700 font-medium capitalize text-sm sm:text-lg mt-2 sm:mt-4"
-          role="contentinfo"
-        >
-          {fechaFormateada}
-        </p>
-      </header>
-
       {/* Main Content */}
       <main
         className="flex-1 flex flex-col lg:flex-row gap-4 sm:gap-6 px-3 sm:px-4 pb-4 sm:pb-6 max-w-7xl mx-auto w-full relative"
