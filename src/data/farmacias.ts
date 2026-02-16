@@ -73,7 +73,7 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-02-18",
-  farmacia: "4 SOLES",
+  farmacia: "SOLIDARIA",
 },
 {
   fecha: "2026-02-19",
@@ -81,7 +81,7 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-02-20",
-  farmacia: "SOLIDARIA",
+  farmacia: "CORRIENTES",
 },
 {
   fecha: "2026-02-21",
@@ -101,7 +101,7 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-02-25",
-  farmacia: "ITATI",
+  farmacia: "4 SOLES",
 },
 {
   fecha: "2026-02-26",
@@ -109,12 +109,15 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-02-27",
-  farmacia: "CORRIENTES",
+  farmacia: "ITATI",
 },
 {
   fecha: "2026-02-28",
   farmacia: "4 SOLES",
 },
-
+{
+  fecha: "2026-03-01",
+  farmacia: "DEL ESTE 2"
+}
   
 ];
