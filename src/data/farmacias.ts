@@ -89,7 +89,7 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-02-22",
-  farmacia: "FARMA CAS",
+  farmacia: "CORRIENTES",
 },
 {
   fecha: "2026-02-23",
