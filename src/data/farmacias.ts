@@ -118,6 +118,126 @@ export const turnosFarmacias = [
 {
   fecha: "2026-03-01",
   farmacia: "DEL ESTE 2"
-}
+},
+{
+  fecha: "2026-03-02",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-03-03",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-03-04",
+  farmacia: "FARMA CAS",
+},
+{
+  fecha: "2026-03-05",
+  farmacia: "DEL ESTE",
+},
+{
+  fecha: "2026-03-06",
+  farmacia: "LOS AMIGOS",
+},
+{
+  fecha: "2026-03-07",
+  farmacia: "SOLIDARIA",
+},
+{
+  fecha: "2026-03-08",
+  farmacia: "CENTRO",
+},
+{
+  fecha: "2026-03-09",
+  farmacia: "CORRIENTES",
+},
+{
+  fecha: "2026-03-10",
+  farmacia: "4 SOLES",
+},
+{
+  fecha: "2026-03-11",
+  farmacia: "DEL ESTE II",
+},
+{
+  fecha: "2026-03-12",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-03-13",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-03-14",
+  farmacia: "FARMA CAS",
+},
+{
+  fecha: "2026-03-15",
+  farmacia: "DEL ESTE",
+},
+{
+  fecha: "2026-03-16",
+  farmacia: "LOS AMIGOS",
+},
+{
+  fecha: "2026-03-17",
+  farmacia: "SOLIDARIA",
+},
+{
+  fecha: "2026-03-18",
+  farmacia: "CENTRO",
+},
+{
+  fecha: "2026-03-19",
+  farmacia: "CORRIENTES",
+},
+{
+  fecha: "2026-03-20",
+  farmacia: "4 SOLES",
+},
+{
+  fecha: "2026-03-21",
+  farmacia: "DEL ESTE II",
+},
+{
+  fecha: "2026-03-22",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-03-23",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-03-24",
+  farmacia: "FARMA CAS",
+},
+{
+  fecha: "2026-03-25",
+  farmacia: "DEL ESTE",
+},
+{
+  fecha: "2026-03-26",
+  farmacia: "LOS AMIGOS",
+},
+{
+  fecha: "2026-03-27",
+  farmacia: "SOLIDARIA",
+},
+{
+  fecha: "2026-03-28",
+  farmacia: "CENTRO",
+},
+{
+  fecha: "2026-03-29",
+  farmacia: "CORRIENTES",
+},
+{
+  fecha: "2026-03-30",
+  farmacia: "4 SOLES",
+},
+{
+  fecha: "2026-03-31",
+  farmacia: "DEL ESTE II",
+},
   
 ];
