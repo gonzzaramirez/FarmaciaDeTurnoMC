@@ -193,39 +193,39 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-03-20",
-  farmacia: "4 SOLES",
-},
-{
-  fecha: "2026-03-21",
   farmacia: "DEL ESTE II",
 },
 {
-  fecha: "2026-03-22",
+  fecha: "2026-03-21",
   farmacia: "ITATI",
 },
 {
-  fecha: "2026-03-23",
+  fecha: "2026-03-22",
   farmacia: "FAR MAR",
 },
 {
-  fecha: "2026-03-24",
+  fecha: "2026-03-23",
   farmacia: "FARMA CAS",
 },
 {
-  fecha: "2026-03-25",
+  fecha: "2026-03-24",
   farmacia: "DEL ESTE",
 },
 {
-  fecha: "2026-03-26",
+  fecha: "2026-03-25",
   farmacia: "LOS AMIGOS",
 },
 {
-  fecha: "2026-03-27",
+  fecha: "2026-03-26",
   farmacia: "SOLIDARIA",
 },
 {
-  fecha: "2026-03-28",
+  fecha: "2026-03-27",
   farmacia: "CENTRO",
+},
+{
+  fecha: "2026-03-28",
+  farmacia: "CORRIENTES",
 },
 {
   fecha: "2026-03-29",
@@ -233,11 +233,11 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-03-30",
-  farmacia: "4 SOLES",
+  farmacia: "DEL ESTE II",
 },
 {
   fecha: "2026-03-31",
-  farmacia: "DEL ESTE II",
+  farmacia: "ITATI",
 },
   
 ];
