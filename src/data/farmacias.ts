@@ -229,15 +229,15 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-03-29",
-  farmacia: "CORRIENTES",
-},
-{
-  fecha: "2026-03-30",
   farmacia: "DEL ESTE II",
 },
 {
-  fecha: "2026-03-31",
+  fecha: "2026-03-30",
   farmacia: "ITATI",
+},
+{
+  fecha: "2026-03-31",
+  farmacia: "FAR MAR",
 },
   
 ];
