@@ -110,48 +110,47 @@ export default function FloatingNav({ activePath = "" }: FloatingNavProps) {
         {/* ── Info dialog ── */}
         <DialogContent
           className="
-    sm:max-w-sm rounded-2xl
-    border border-zinc-200
-    bg-white shadow-xl
-    px-5 py-6
-  "
+            max-h-[min(85dvh,28rem)] w-full max-w-[min(22rem,calc(100vw-1.5rem))]
+            overflow-y-auto overscroll-y-contain
+            rounded-2xl border border-zinc-200 bg-white px-4 py-4 shadow-xl
+            sm:max-h-[min(90dvh,34rem)] sm:max-w-sm sm:px-5 sm:py-6
+          "
         >
-          <DialogHeader className="text-center">
+          <DialogHeader className="space-y-0 text-center">
             {/* Icon badge */}
-            <div className="mb-4 flex justify-center">
+            <div className="mb-2 flex justify-center sm:mb-3">
               <div
                 className="
-          flex h-12 w-12 items-center justify-center
-          rounded-full bg-[#f0fdf4] text-[#166534]
-          ring-1 ring-[#dcfce7]
-        "
+                  flex h-10 w-10 items-center justify-center rounded-full
+                  bg-[#f0fdf4] text-[#166534] ring-1 ring-[#dcfce7] sm:h-12 sm:w-12
+                "
               >
-                <Info className="h-6 w-6" aria-hidden />
+                <Info className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
               </div>
             </div>
 
             <DialogTitle
               className="
-        font-['Lora',Georgia,serif] text-xl font-semibold
-        tracking-tight text-zinc-900
-      "
+                font-['Lora',Georgia,serif] text-lg font-semibold tracking-tight text-zinc-900
+                sm:text-xl
+              "
             >
               Sobre este proyecto
             </DialogTitle>
 
-            <DialogDescription className="pt-1 text-sm text-zinc-500 leading-relaxed">
+            <DialogDescription className="pt-1 text-xs leading-relaxed text-zinc-500 sm:text-sm">
               Herramienta gratuita para consultar farmacias de turno en Monte
               Caseros, Corrientes.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="mt-4 space-y-3 border-t border-zinc-100 pt-4">
+          <div className="mt-3 space-y-2 border-t border-zinc-100 pt-3 sm:mt-4 sm:space-y-3 sm:pt-4">
             {/* Info turnos */}
             <p
               className="
-        rounded-xl border border-zinc-100 bg-zinc-50
-        px-4 py-3 text-sm leading-relaxed text-zinc-600
-      "
+                rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs
+                leading-relaxed text-zinc-600 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm
+              "
             >
               La información de turnos se actualiza según el calendario local.
               Cada turno rige de las{" "}
@@ -164,11 +163,11 @@ export default function FloatingNav({ activePath = "" }: FloatingNavProps) {
             {/* Fuente de datos */}
             <div
               className="
-        rounded-xl border border-zinc-100 bg-zinc-50
-        px-4 py-3 text-sm leading-relaxed text-zinc-600
-      "
+                rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs
+                leading-relaxed text-zinc-600 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm
+              "
             >
-              <span className="block font-semibold text-[#166534] mb-1">
+              <span className="mb-0.5 block font-semibold text-[#166534] sm:mb-1">
                 Fuente de datos
               </span>
               <p>
@@ -191,11 +190,11 @@ export default function FloatingNav({ activePath = "" }: FloatingNavProps) {
             {/* Contacto */}
             <div
               className="
-        rounded-xl border border-zinc-100 bg-zinc-50
-        px-4 py-3 text-sm leading-relaxed text-zinc-600
-      "
+                rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs
+                leading-relaxed text-zinc-600 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm
+              "
             >
-              <span className="block font-semibold text-[#166534] mb-1">
+              <span className="mb-0.5 block font-semibold text-[#166534] sm:mb-1">
                 Contacto
               </span>
               <p>
@@ -212,9 +211,9 @@ export default function FloatingNav({ activePath = "" }: FloatingNavProps) {
             {/* Author row */}
             <div
               className="
-        flex items-center justify-between gap-2
-        rounded-xl bg-zinc-900 px-4 py-3
-      "
+                flex items-center justify-between gap-2 rounded-lg bg-zinc-900 px-3 py-2.5
+                sm:rounded-xl sm:px-4 sm:py-3
+              "
             >
               <span className="text-xs font-medium text-zinc-400">
                 Hecho por

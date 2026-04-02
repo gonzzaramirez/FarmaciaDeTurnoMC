@@ -40,11 +40,6 @@
       "source": "/farmacia-de-turno",
       "destination": "/",
       "permanent": true
-    },
-    {
-      "source": "/farmacias",
-      "destination": "/",
-      "permanent": true
     }
   ]
 } 
