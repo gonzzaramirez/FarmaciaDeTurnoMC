@@ -1,0 +1,9 @@
+import { f as createComponent, m as maybeRenderHead, r as renderTemplate } from './astro/server_BqGBBOA7.mjs';
+import 'kleur/colors';
+import 'clsx';
+
+const $$SecondaryPageInfo = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${maybeRenderHead()}<section class="mx-auto mt-14 max-w-2xl pb-4 text-center sm:mt-16" aria-label="Enlaces relacionados"> <h2 class="text-xs font-medium uppercase tracking-wide text-zinc-400">También podés ver</h2> <ul class="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-zinc-600"> <li> <a class="font-medium text-emerald-700 underline-offset-4 hover:underline" href="/">Farmacia de turno hoy</a> </li> <li> <a class="font-medium text-emerald-700 underline-offset-4 hover:underline" href="/calendario">Calendario de turnos</a> </li> <li> <a class="font-medium text-emerald-700 underline-offset-4 hover:underline" href="/farmacias">Directorio de farmacias</a> </li> </ul> </section>`;
+}, "C:/Users/Gonza/Desktop/FarmaciaDeTurnoMC/src/components/SecondaryPageInfo.astro", void 0);
+
+export { $$SecondaryPageInfo as $ };

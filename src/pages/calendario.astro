@@ -1,0 +1,375 @@
+---
+import "../styles/global.css";
+import { getProximosTurnos } from "../lib/generarTurnos";
+import FloatingNav from "../components/FloatingNav";
+import SecondaryPageInfo from "../components/SecondaryPageInfo.astro";
+import Analytics from "@vercel/analytics/astro";
+
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+);
+
+const AR_TIME_ZONE = "America/Argentina/Buenos_Aires";
+const now = new Date();
+const fechaFormateada = new Intl.DateTimeFormat("es-AR", {
+  timeZone: AR_TIME_ZONE,
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(now);
+
+const fechaCorta = new Intl.DateTimeFormat("es-AR", {
+  timeZone: AR_TIME_ZONE,
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+}).format(now);
+
+const proximosTurnos = getProximosTurnos(now, 24);
+const url = "https://farmaciadeturnomc.site";
+const pageUrl = `${url}/calendario`;
+const imageUrl = `${url}/og-image.png`;
+
+const title = "Próximos turnos farmacia de turno | Monte Caseros, Corrientes";
+const description = `Calendario de farmacia de turno en Monte Caseros, Corrientes: fechas y direcciones. Turnos de 8:00 a 8:00 (AR). Actualizado ${fechaCorta}.`;
+
+const jsonLdItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Próximos turnos — farmacias Monte Caseros",
+  description,
+  numberOfItems: proximosTurnos.length,
+  itemListElement: proximosTurnos.map((t, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${pageUrl}#turno-${t.fechaOriginal}`,
+    name: t.nombre,
+    description: `${t.fechaLegible} — ${t.direccion}`,
+  })),
+};
+
+const jsonLdWebPage = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: pageUrl,
+  inLanguage: "es-AR",
+  isPartOf: { "@type": "WebSite", name: "Farmacias de Turno Monte Caseros", url },
+};
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: url },
+    { "@type": "ListItem", position: 2, name: "Calendario de turnos", item: pageUrl },
+  ],
+};
+
+const jsonLdFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿A qué hora cambia la farmacia de turno en Monte Caseros?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cada turno comienza a las 8:00 y finaliza a las 8:00 del día siguiente (hora Argentina).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿En qué orden aparecen los próximos turnos en el calendario?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El listado muestra los turnos consecutivos a partir del vigente, según el calendario local de farmacias de Monte Caseros.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Dónde veo la farmacia de turno de hoy con mapa y teléfono?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "En la página de inicio del sitio podés ver la farmacia de turno actual con mapa y datos de contacto.",
+      },
+    },
+  ],
+};
+---
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="es-AR" />
+    <meta name="geo.region" content="AR-W" />
+    <meta name="geo.placename" content="Monte Caseros" />
+    <meta name="geo.position" content="-30.2539;-57.6363" />
+    <meta name="ICBM" content="-30.2539, -57.6363" />
+    <link rel="canonical" href={pageUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Farmacias de Turno Monte Caseros" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={pageUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={imageUrl} />
+
+    <meta name="theme-color" content="#166534" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Farmacias de Turno MC" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdWebPage)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdItemList)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdBreadcrumb)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdFAQ)} />
+
+    <style>
+      :root {
+        --green-950: #052e16;
+        --green-900: #14532d;
+        --green-800: #166534;
+        --green-700: #15803d;
+        --green-600: #16a34a;
+        --green-100: #dcfce7;
+        --green-50:  #f0fdf4;
+        --zinc-900:  #18181b;
+        --zinc-700:  #3f3f46;
+        --zinc-500:  #71717a;
+        --zinc-200:  #e4e4e7;
+        --zinc-100:  #f4f4f5;
+        --zinc-50:   #fafafa;
+      }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-family: 'Outfit', system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+      body { background: var(--zinc-50); color: var(--zinc-900); min-height: 100vh; }
+
+      /* ── page bg pattern ── */
+      .page-bg {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background: var(--zinc-50);
+        background-image: radial-gradient(circle, #d4d4d8 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+
+      main { position: relative; z-index: 1; max-width: 44rem; margin: 0 auto;
+             padding: 1.5rem 1rem 10rem; }
+      @media (min-width: 640px) { main { padding-top: 2.5rem; padding-inline: 1.5rem; } }
+
+      /* ── header ── */
+      .page-header { margin-bottom: 2rem; }
+      .date-badge {
+        display: inline-flex; align-items: center; gap: 0.375rem;
+        background: var(--green-50); border: 1px solid var(--green-100);
+        color: var(--green-800); font-size: 0.75rem; font-weight: 500;
+        padding: 0.25rem 0.625rem; border-radius: 999px; margin-bottom: 0.875rem;
+        text-transform: capitalize; letter-spacing: 0.01em;
+      }
+      .date-badge svg { width: 13px; height: 13px; flex-shrink: 0; }
+      h1 {
+        font-family: 'Lora', Georgia, serif; font-size: 1.625rem; font-weight: 600;
+        line-height: 1.25; color: var(--zinc-900); margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
+      }
+      @media (min-width: 640px) { h1 { font-size: 2rem; } }
+      .subtitle { font-size: 0.875rem; color: var(--zinc-500); line-height: 1.6; }
+      .subtitle a { color: var(--green-700); font-weight: 500; text-underline-offset: 3px; }
+      .subtitle a:hover { text-decoration: underline; }
+
+      /* ── info pill ── */
+      .info-strip {
+        display: flex; align-items: center; gap: 0.5rem;
+        background: #fff; border: 1px solid var(--zinc-200);
+        border-radius: 0.75rem; padding: 0.625rem 0.875rem;
+        margin-bottom: 1.5rem; font-size: 0.8125rem; color: var(--zinc-500);
+      }
+      .info-strip svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--green-600); }
+
+      /* ── turno list ── */
+      .turno-list { display: flex; flex-direction: column; gap: 0.625rem; }
+      @media (min-width: 640px) {
+        .turno-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      }
+      @media (min-width: 900px) {
+        .turno-list { grid-template-columns: 1fr 1fr 1fr; }
+      }
+
+      /* ── card ── */
+      .turno-card {
+        background: #fff; border: 1px solid var(--zinc-200);
+        border-radius: 1rem; padding: 0.875rem 1rem;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        display: flex; flex-direction: column; gap: 0.375rem;
+      }
+      .turno-card:hover { border-color: #86efac; box-shadow: 0 2px 12px rgba(22,163,74,0.08); }
+
+      /* first card (hoy o vigente) gets a green accent */
+      .turno-card.turno-actual {
+        border-color: var(--green-700); border-width: 1.5px;
+        background: var(--green-50);
+      }
+      .badge-actual {
+        display: inline-flex; align-items: center; gap: 4px;
+        background: var(--green-700); color: #fff;
+        font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.03em;
+        padding: 0.15rem 0.5rem; border-radius: 999px; margin-bottom: 0.125rem;
+        text-transform: uppercase; width: fit-content;
+      }
+      .turno-fecha {
+        font-size: 0.75rem; font-weight: 500; color: var(--green-800);
+        text-transform: capitalize; letter-spacing: 0.01em;
+      }
+      .turno-nombre {
+        font-family: 'Lora', Georgia, serif; font-size: 1rem; font-weight: 600;
+        color: var(--zinc-900); line-height: 1.3;
+      }
+      .turno-dir {
+        display: flex; align-items: flex-start; gap: 0.375rem;
+        font-size: 0.8125rem; color: var(--zinc-500); line-height: 1.5;
+        margin-top: 0.125rem;
+      }
+      .turno-dir svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; }
+
+      /* ── section title ── */
+      .section-label {
+        font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--zinc-500);
+        margin-bottom: 0.875rem; margin-top: 1.75rem;
+      }
+      .section-label:first-of-type { margin-top: 0; }
+
+      /* ── FAQ below ── */
+      .faq { margin-top: 2.5rem; border-top: 1px solid var(--zinc-200); padding-top: 2rem; }
+      .faq h2 { font-family: 'Lora', Georgia, serif; font-size: 1.125rem; font-weight: 600;
+                color: var(--zinc-900); margin-bottom: 1.25rem; }
+      details { border-bottom: 1px solid var(--zinc-200); padding-block: 0.875rem; }
+      details:last-child { border-bottom: none; }
+      summary {
+        font-size: 0.9375rem; font-weight: 500; color: var(--zinc-900);
+        cursor: pointer; list-style: none; display: flex; justify-content: space-between;
+        align-items: center; gap: 0.75rem;
+      }
+      summary::-webkit-details-marker { display: none; }
+      summary::after {
+        content: "+"; font-size: 1.25rem; font-weight: 400; color: var(--zinc-500);
+        flex-shrink: 0; transition: transform 0.2s;
+      }
+      details[open] summary::after { content: "−"; }
+      details p { font-size: 0.875rem; color: var(--zinc-500); line-height: 1.65;
+                  margin-top: 0.625rem; padding-right: 1.5rem; }
+    </style>
+
+    <Analytics />
+  </head>
+
+  <body>
+    <div class="page-bg" aria-hidden="true"></div>
+
+    <FloatingNav client:idle activePath="/calendario" />
+
+    <main>
+      <!-- ── Header ── -->
+      <header class="page-header">
+        <div class="date-badge" aria-label="Fecha actual">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          {fechaFormateada}
+        </div>
+        <h1>Próximos turnos en Monte Caseros</h1>
+        <p class="subtitle">
+          Consultá qué farmacia estará de turno los próximos días.
+          Para la farmacia de <strong>hoy</strong> con mapa y teléfono, visitá el
+          <a href="/">inicio</a>.
+        </p>
+      </header>
+
+      <!-- ── Info strip ── -->
+      <div class="info-strip" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Cada turno va de las <strong>8:00 del día indicado</strong> hasta las 8:00 del día siguiente.
+      </div>
+
+      <!-- ── Turno list ── -->
+      <section aria-labelledby="cal-list-title">
+        <h2 id="cal-list-title" class="sr-only">Listado de próximos turnos</h2>
+
+        <p class="section-label">Turnos programados</p>
+
+        <div class="turno-list">
+          {
+            proximosTurnos.map((turno, i) => (
+              <article
+                id={`turno-${turno.fechaOriginal}`}
+                class={`turno-card${i === 0 ? " turno-actual" : ""}`}
+                aria-label={`${turno.nombre}, ${turno.fechaLegible}`}
+              >
+                {i === 0 && <span class="badge-actual" aria-label="Turno actual">Turno actual</span>}
+                <p class="turno-fecha">{turno.fechaLegible}</p>
+                <h3 class="turno-nombre">{turno.nombre}</h3>
+                <p class="turno-dir">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                  </svg>
+                  <span>{turno.direccion}</span>
+                </p>
+                <p class="sr-only">Fecha ISO: {turno.fechaOriginal}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- ── FAQ ── -->
+      <section class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Preguntas frecuentes</h2>
+
+        <details>
+          <summary>¿A qué hora cambia la farmacia de turno?</summary>
+          <p>El cambio ocurre todos los días a las <strong>8:00 a.m.</strong> (hora Argentina). El turno cubre desde esa hora hasta las 8:00 del día siguiente.</p>
+        </details>
+
+        <details>
+          <summary>¿Dónde veo el mapa y el teléfono de hoy?</summary>
+          <p>En la <a href="/" style="color: var(--green-700); font-weight: 500;">página de inicio</a> encontrás la farmacia de turno actual con mapa interactivo y número de teléfono para llamar directamente.</p>
+        </details>
+
+        <details>
+          <summary>¿Puedo ver el directorio completo de farmacias?</summary>
+          <p>Sí. En <a href="/farmacias" style="color: var(--green-700); font-weight: 500;">Directorio de farmacias</a> está la lista con teléfonos y direcciones de todas las farmacias que rotan en el calendario de Monte Caseros.</p>
+        </details>
+      </section>
+
+      <SecondaryPageInfo />
+    </main>
+  </body>
+</html>

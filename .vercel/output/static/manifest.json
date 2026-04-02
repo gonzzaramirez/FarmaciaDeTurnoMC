@@ -1,0 +1,21 @@
+{
+  "name": "Farmacias de Turno Monte Caseros",
+  "short_name": "Farmacias MC",
+  "description": "Consulta qué farmacia está de turno hoy en Monte Caseros, Corrientes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "health", "utilities"],
+  "lang": "es-AR",
+  "dir": "ltr"
+} 

@@ -10,8 +10,11 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // Forzar la inclusión de tu home con el dominio principal
-      customPages: ['https://farmaciadeturnomc.site/'],
+      customPages: [
+        'https://farmaciadeturnomc.site/',
+        'https://farmaciadeturnomc.site/calendario',
+        'https://farmaciadeturnomc.site/farmacias',
+      ],
     }),
   ],
   site: 'https://farmaciadeturnomc.site',
@@ -22,7 +25,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     ssr: {
-      noExternal: ['@radix-ui/*'],
+      noExternal: ['@radix-ui/*', 'framer-motion'],
     },
   },
   adapter: vercel(),

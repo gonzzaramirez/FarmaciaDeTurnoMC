@@ -1,7 +1,7 @@
 import { turnosFarmacias } from "@/data/farmacias";
 
 // 🏥 Información detallada de las farmacias
-const farmaciasInfo = {
+export const farmaciasInfo = {
   ITATI: {
     nombre: "Farmacia ITATI",
     direccion: "Vicente Mendieta 1597",
@@ -178,4 +178,50 @@ export const getFarmaciaByDate = (fecha: Date): any => {
     trabajando: estado.trabajando,
     estadoMensaje: estado.mensaje,
   };
+};
+
+/** Próximos turnos a partir del turno vigente (misma regla 8:00 que getFarmaciaByDate). */
+export const getProximosTurnos = (
+  fecha: Date,
+  cantidad: number
+): Array<{
+  fechaOriginal: string;
+  fechaLegible: string;
+  nombre: string;
+  direccion: string;
+}> => {
+  const horaAR = getHourInTimeZone(fecha, AR_TIME_ZONE);
+  const hoyYMD_AR = formatDateYMDInTimeZone(fecha, AR_TIME_ZONE);
+  const fechaInicioYMD =
+      horaAR < 8
+        ? subtractDaysFromYMDInTimeZone(hoyYMD_AR, AR_TIME_ZONE, 1)
+        : hoyYMD_AR;
+
+  const ordenados = getTurnosOrdenados();
+  let idx = ordenados.findIndex((t) => t.fecha === fechaInicioYMD);
+  if (idx === -1) {
+    idx = ordenados.findIndex((t) => t.fecha >= fechaInicioYMD);
+    if (idx === -1) return [];
+  }
+
+  const slice = ordenados.slice(idx, idx + cantidad);
+  const fechaLegibleFmt = new Intl.DateTimeFormat("es-AR", {
+    timeZone: AR_TIME_ZONE,
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return slice.map((t) => {
+    const [y, mo, d] = t.fecha.split("-").map(Number);
+    const refDía = new Date(Date.UTC(y, mo - 1, d, 12));
+    const info = farmaciasInfo[t.farmacia as keyof typeof farmaciasInfo];
+    return {
+      fechaOriginal: t.fecha,
+      fechaLegible: fechaLegibleFmt.format(refDía),
+      nombre: info?.nombre ?? String(t.farmacia),
+      direccion: info?.direccion ?? "",
+    };
+  });
 };
