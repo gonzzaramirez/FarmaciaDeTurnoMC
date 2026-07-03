@@ -261,7 +261,7 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-07-04",
-  farmacia: "CENTRO",
+  farmacia: "LOS AMIGOS",
 },
 {
   fecha: "2026-07-05",
@@ -289,7 +289,7 @@ export const turnosFarmacias = [
 },
 {
   fecha: "2026-07-11",
-  farmacia: "LOS AMIGOS",
+  farmacia: "CENTRO",
 },
 {
   fecha: "2026-07-12",
