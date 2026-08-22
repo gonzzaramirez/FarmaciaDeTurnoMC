@@ -1,0 +1,29 @@
+# Farmacias de Turno Monte Caseros
+
+> Sitio informativo que muestra qué farmacia está de turno hoy en Monte Caseros, Corrientes, Argentina. Incluye dirección y teléfono de la farmacia de turno vigente, el calendario de los próximos turnos y un directorio completo de las farmacias participantes.
+
+El sitio cubre exclusivamente la ciudad de Monte Caseros, provincia de Corrientes, Argentina. Cada turno dura 24 horas: comienza a las 8:00 de un día y termina a las 8:00 del día siguiente, en hora argentina (America/Argentina/Buenos_Aires). Los datos provienen del calendario oficial publicado por el Municipio de Monte Caseros, contrastado con medios locales y comunicación directa con las farmacias; se actualiza periódicamente, generalmente cada mes.
+
+**Cuándo usar este sitio**: cuando necesites saber qué farmacia está abierta ahora mismo o esta noche en Monte Caseros por un turno; cuando necesites la dirección o el teléfono de la farmacia de turno vigente; cuando quieras planificar una compra de medicamentos consultando los turnos de los próximos días; o cuando necesites el listado completo de farmacias de la ciudad con sus datos de contacto. **No es adecuado** para emergencias médicas (llamá a los servicios de emergencia), para consultar stock de medicamentos en tiempo real (llamá a la farmacia antes de ir), ni para farmacias fuera de Monte Caseros.
+
+**Cómo consultar**: pedí cualquier URL del sitio con la cabecera `Accept: text/markdown` y recibirás una versión limpia en Markdown (`Content-Type: text/markdown; charset=utf-8`); sin esa cabecera obtendrás la página HTML habitual. Si pedís un formato no disponible, el servidor responde `406 Not Acceptable` con la lista de representaciones disponibles. La respuesta 404 de rutas inexistentes también incluye un cuerpo Markdown con enlaces de recuperación.
+
+## Páginas
+
+- [Farmacia de turno hoy](https://farmaciadeturnomc.site/): nombre, dirección, teléfono y estado del turno vigente más los próximos turnos.
+- [Calendario de próximos turnos](https://farmaciadeturnomc.site/calendario): fechas programadas de los próximos turnos con farmacia y dirección.
+- [Directorio de farmacias](https://farmaciadeturnomc.site/farmacias): todas las farmacias que rotan en el calendario con teléfonos y direcciones.
+- [Acerca del proyecto](https://farmaciadeturnomc.site/about): qué es el sitio, cómo funciona el calendario y de dónde salen los datos.
+- [Contacto](https://farmaciadeturnomc.site/contact): correo para reportar datos desactualizados o enviar sugerencias.
+- [Política de privacidad](https://farmaciadeturnomc.site/privacy): qué datos se recopilan y qué servicios de terceros se utilizan.
+
+## Recursos para agentes
+
+- [llms.txt](https://farmaciadeturnomc.site/llms.txt): este archivo.
+- [Sitemap](https://farmaciadeturnomc.site/sitemap-index.xml): índice de páginas indexables.
+- [robots.txt](https://farmaciadeturnomc.site/robots.txt): política de rastreo.
+
+## Optional
+
+- [Repositorio GitHub del autor](https://github.com/gonzzaramirez): proyectos abiertos del mantenedor.
+- [Fuente oficial de datos](https://turismo.montecaseros.gob.ar/monte-caseros/salud/farmacias): calendario de farmacias de turno del municipio.

@@ -1,0 +1,209 @@
+---
+// Shared layout for the trust anchor pages (/about, /contact, /privacy).
+// Content comes from src/content/trustPages.ts so the HTML page and the
+// text/markdown negotiated variant always say the same thing.
+import "../styles/global.css";
+import FloatingNav from "./FloatingNav";
+import Clarity from "./Clarity.astro";
+import SecondaryPageInfo from "./SecondaryPageInfo.astro";
+import Analytics from "@vercel/analytics/astro";
+import {
+  CONTACT_EMAIL,
+  DATA_SOURCE_NAME,
+  DATA_SOURCE_URL,
+  GITHUB_URL,
+  SITE_NAME,
+  SITE_URL,
+  type TrustPageCopy,
+} from "@/content/trustPages";
+
+interface Props {
+  copy: TrustPageCopy;
+}
+
+const { copy } = Astro.props;
+const canonical = `${SITE_URL}${copy.slug}`;
+---
+
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{copy.metaTitle}</title>
+    <meta name="description" content={copy.description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="es-AR" />
+    <link rel="canonical" href={canonical} />
+    <link rel="describedby" href="/llms.txt" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={copy.metaTitle} />
+    <meta property="og:description" content={copy.description} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={SITE_NAME} />
+
+    <meta name="theme-color" content="#166534" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --green-950: #052e16;
+        --green-900: #14532d;
+        --green-800: #166534;
+        --green-700: #15803d;
+        --green-600: #16a34a;
+        --green-100: #dcfce7;
+        --green-50: #f0fdf4;
+        --zinc-900: #18181b;
+        --zinc-700: #3f3f46;
+        --zinc-500: #71717a;
+        --zinc-200: #e4e4e7;
+        --zinc-100: #f4f4f5;
+        --zinc-50: #fafafa;
+      }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-family: 'Outfit', system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+      body { background: var(--zinc-50); color: var(--zinc-900); min-height: 100vh; }
+
+      .page-bg {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background: var(--zinc-50);
+        background-image: radial-gradient(circle, #d4d4d8 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+
+      main { position: relative; z-index: 1; max-width: 44rem; margin: 0 auto;
+             padding: 1.5rem 1rem 10rem; }
+      @media (min-width: 640px) { main { padding-top: 2.5rem; padding-inline: 1.5rem; } }
+
+      .page-header { margin-bottom: 2rem; }
+      .page-badge {
+        display: inline-flex; align-items: center; gap: 0.375rem;
+        background: var(--green-50); border: 1px solid var(--green-100);
+        color: var(--green-800); font-size: 0.75rem; font-weight: 500;
+        padding: 0.25rem 0.625rem; border-radius: 999px; margin-bottom: 0.875rem;
+        letter-spacing: 0.01em;
+      }
+      h1 {
+        font-family: 'Lora', Georgia, serif; font-size: 1.625rem; font-weight: 600;
+        line-height: 1.25; color: var(--zinc-900); margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+      }
+      @media (min-width: 640px) { h1 { font-size: 2rem; } }
+
+      .intro p, section p {
+        font-size: 0.9375rem; color: var(--zinc-700); line-height: 1.7;
+      }
+      .intro p + p { margin-top: 0.75rem; }
+      .intro a, section a {
+        color: var(--green-700); font-weight: 500; text-underline-offset: 3px;
+      }
+      .intro a:hover, section a:hover { text-decoration: underline; }
+
+      section { margin-top: 1.75rem; }
+      section h2 {
+        font-family: 'Lora', Georgia, serif; font-size: 1.125rem; font-weight: 600;
+        color: var(--green-900); margin-bottom: 0.625rem;
+      }
+      section h3 {
+        font-size: 0.9375rem; font-weight: 600; color: var(--zinc-900);
+        margin-top: 1rem; margin-bottom: 0.25rem;
+      }
+      section p + p { margin-top: 0.5rem; }
+
+      .contact-card {
+        margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;
+        background: var(--green-50); border: 1px solid var(--green-100);
+        border-radius: 1rem; padding: 1rem 1.125rem;
+      }
+      .contact-card a {
+        font-size: 0.9375rem; color: var(--green-800) !important; word-break: break-all;
+      }
+      .contact-label {
+        font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--green-700);
+      }
+
+      .disclaimer {
+        margin-top: 1.75rem; border-left: 3px solid var(--green-600);
+        background: #fff; border-radius: 0 0.75rem 0.75rem 0;
+        padding: 0.875rem 1rem; font-size: 0.875rem; color: var(--zinc-500); line-height: 1.65;
+      }
+    </style>
+
+    <Analytics />
+    <Clarity />
+  </head>
+
+  <body>
+    <div class="page-bg" aria-hidden="true"></div>
+
+    <FloatingNav client:idle activePath={copy.slug} />
+
+    <main>
+      <!-- ── Header ── -->
+      <header class="page-header">
+        <div class="page-badge">{SITE_NAME}</div>
+        <h1>{copy.title}</h1>
+        <div class="intro">
+          {copy.intro.map((paragraph) => <p set:html={paragraph} />)}
+        </div>
+      </header>
+
+      {
+        copy.slug === "/contact" && (
+          <div class="contact-card">
+            <span class="contact-label">Correo de contacto</span>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            <span class="contact-label">GitHub</span>
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+              {GITHUB_URL.replace("https://", "")}
+            </a>
+          </div>
+        )
+      }
+
+      <!-- ── Sections ── -->
+      {
+        copy.sections.map((section) => (
+          <section aria-labelledby={`sec-${section.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+            <h2 id={`sec-${section.heading.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{section.heading}</h2>
+            {section.body.map((paragraph) => (
+              <p
+                set:html={paragraph
+                  .replaceAll(
+                    CONTACT_EMAIL,
+                    `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`,
+                  )
+                  .replaceAll(
+                    "github.com/gonzzaramirez",
+                    `<a href="${GITHUB_URL}" target="_blank" rel="noopener noreferrer">github.com/gonzzaramirez</a>`,
+                  )
+                  .replaceAll(
+                    DATA_SOURCE_NAME,
+                    `<a href="${DATA_SOURCE_URL}" target="_blank" rel="noopener noreferrer">${DATA_SOURCE_NAME}</a>`,
+                  )}
+              />
+            ))}
+          </section>
+        ))
+      }
+
+      <div class="disclaimer">
+        Información sin cargo y sin fines de lucro. Ante una emergencia de
+        salud, comunicate con los servicios de emergencia o acudí al centro de
+        salud más cercano.
+      </div>
+
+      <SecondaryPageInfo />
+    </main>
+  </body>
+</html>
