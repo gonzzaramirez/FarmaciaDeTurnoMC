@@ -617,4 +617,254 @@ export const turnosFarmacias = [
   fecha: "2026-09-30",
   farmacia: "LOS AMIGOS",
 },
+// OCTUBRE 2026
+
+{
+
+  fecha: "2026-10-01",
+
+  farmacia: "SOLIDARIA",
+
+},
+
+{
+
+  fecha: "2026-10-02",
+
+  farmacia: "CENTRO",
+
+},
+
+{
+
+  fecha: "2026-10-03",
+
+  farmacia: "CORRIENTES",
+
+},
+
+{
+
+  fecha: "2026-10-04",
+
+  farmacia: "DEL ESTE II",
+
+},
+
+{
+
+  fecha: "2026-10-05",
+
+  farmacia: "ITATI",
+
+},
+
+{
+
+  fecha: "2026-10-06",
+
+  farmacia: "FAR MAR",
+
+},
+
+{
+
+  fecha: "2026-10-07",
+
+  farmacia: "FARMA CAS",
+
+},
+
+{
+
+  fecha: "2026-10-08",
+
+  farmacia: "DEL ESTE",
+
+},
+
+{
+
+  fecha: "2026-10-09",
+
+  farmacia: "LOS AMIGOS",
+
+},
+
+{
+
+  fecha: "2026-10-10",
+
+  farmacia: "SOLIDARIA",
+
+},
+
+{
+
+  fecha: "2026-10-11",
+
+  farmacia: "CENTRO",
+
+},
+
+{
+
+  fecha: "2026-10-12",
+
+  farmacia: "CORRIENTES",
+
+},
+
+{
+
+  fecha: "2026-10-13",
+
+  farmacia: "DEL ESTE II",
+
+},
+
+{
+
+  fecha: "2026-10-14",
+
+  farmacia: "ITATI",
+
+},
+
+{
+
+  fecha: "2026-10-15",
+
+  farmacia: "FAR MAR",
+
+},
+
+{
+
+  fecha: "2026-10-16",
+
+  farmacia: "FARMA CAS",
+
+},
+
+{
+
+  fecha: "2026-10-17",
+
+  farmacia: "DEL ESTE",
+
+},
+
+{
+
+  fecha: "2026-10-18",
+
+  farmacia: "LOS AMIGOS",
+
+},
+
+{
+
+  fecha: "2026-10-19",
+
+  farmacia: "SOLIDARIA",
+
+},
+
+{
+
+  fecha: "2026-10-20",
+
+  farmacia: "CENTRO",
+
+},
+
+{
+
+  fecha: "2026-10-21",
+
+  farmacia: "CORRIENTES",
+
+},
+
+{
+
+  fecha: "2026-10-22",
+
+  farmacia: "DEL ESTE II",
+
+},
+
+{
+
+  fecha: "2026-10-23",
+
+  farmacia: "ITATI",
+
+},
+
+{
+
+  fecha: "2026-10-24",
+
+  farmacia: "FAR MAR",
+
+},
+
+{
+
+  fecha: "2026-10-25",
+
+  farmacia: "FARMA CAS",
+
+},
+
+{
+
+  fecha: "2026-10-26",
+
+  farmacia: "DEL ESTE",
+
+},
+
+{
+
+  fecha: "2026-10-27",
+
+  farmacia: "LOS AMIGOS",
+
+},
+
+{
+
+  fecha: "2026-10-28",
+
+  farmacia: "SOLIDARIA",
+
+},
+
+{
+
+  fecha: "2026-10-29",
+
+  farmacia: "CENTRO",
+
+},
+
+{
+
+  fecha: "2026-10-30",
+
+  farmacia: "CORRIENTES",
+
+},
+
+{
+
+  fecha: "2026-10-31",
+
+  farmacia: "DEL ESTE II",
+
+},
+
 ];
