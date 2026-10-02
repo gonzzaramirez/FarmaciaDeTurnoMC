@@ -631,7 +631,7 @@ export const turnosFarmacias = [
 
   fecha: "2026-10-02",
 
-  farmacia: "CENTRO",
+  farmacia: "FAR MAR",
 
 },
 
@@ -663,7 +663,7 @@ export const turnosFarmacias = [
 
   fecha: "2026-10-06",
 
-  farmacia: "FAR MAR",
+  farmacia: "CENTRO",
 
 },
 
