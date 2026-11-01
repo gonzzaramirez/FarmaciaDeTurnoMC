@@ -866,5 +866,126 @@ export const turnosFarmacias = [
   farmacia: "DEL ESTE II",
 
 },
+  // NOVIEMBRE 2026
+{
+  fecha: "2026-11-01",
+  farmacia: "CORRIENTES",
+},
+{
+  fecha: "2026-11-02",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-11-03",
+  farmacia: "FARMA CAS",
+},
+{
+  fecha: "2026-11-04",
+  farmacia: "DEL ESTE",
+},
+{
+  fecha: "2026-11-05",
+  farmacia: "LOS AMIGOS",
+},
+{
+  fecha: "2026-11-06",
+  farmacia: "SOLIDARIA",
+},
+{
+  fecha: "2026-11-07",
+  farmacia: "CENTRO",
+},
+{
+  fecha: "2026-11-08",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-11-09",
+  farmacia: "DEL ESTE II",
+},
+{
+  fecha: "2026-11-10",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-11-11",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-11-12",
+  farmacia: "FARMA CAS",
+},
+{
+  fecha: "2026-11-13",
+  farmacia: "DEL ESTE",
+},
+{
+  fecha: "2026-11-14",
+  farmacia: "LOS AMIGOS",
+},
+{
+  fecha: "2026-11-15",
+  farmacia: "SOLIDARIA",
+},
+{
+  fecha: "2026-11-16",
+  farmacia: "CENTRO",
+},
+{
+  fecha: "2026-11-17",
+  farmacia: "CORRIENTES",
+},
+{
+  fecha: "2026-11-18",
+  farmacia: "DEL ESTE II",
+},
+{
+  fecha: "2026-11-19",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-11-20",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-11-21",
+  farmacia: "FARMA CAS",
+},
+{
+  fecha: "2026-11-22",
+  farmacia: "DEL ESTE",
+},
+{
+  fecha: "2026-11-23",
+  farmacia: "LOS AMIGOS",
+},
+{
+  fecha: "2026-11-24",
+  farmacia: "SOLIDARIA",
+},
+{
+  fecha: "2026-11-25",
+  farmacia: "CENTRO",
+},
+{
+  fecha: "2026-11-26",
+  farmacia: "CORRIENTES",
+},
+{
+  fecha: "2026-11-27",
+  farmacia: "DEL ESTE II",
+},
+{
+  fecha: "2026-11-28",
+  farmacia: "ITATI",
+},
+{
+  fecha: "2026-11-29",
+  farmacia: "FAR MAR",
+},
+{
+  fecha: "2026-11-30",
+  farmacia: "FARMA CAS",
+},
 
 ];
